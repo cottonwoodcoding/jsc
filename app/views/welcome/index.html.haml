@@ -65,11 +65,11 @@
                 .controls
                   %input{type: 'submit', role: 'button', class: 'btn'}
       %li
-        %a{href: '#'} Contact / Payments
+        %a{href: '#'} Contact/Pay
         .ac_subitem
           %span.ac_close
           #contact_us_content
-            %h2 Contact Us / Pay Us
+            %h2 Contact / Pay Us
             %hr
             #contact_us
               %h2 We hear you!
@@ -99,7 +99,7 @@
                     %input{name: 'payment_amount', type: 'text', id: 'payment_amount'}
                     %input#pay_us_button{type: 'image', src: image_path('paypal-button.png')}
 .ac_footer
-  %a.ac_left{href: '#'}
+  %a.ac_left.hidden-phone{href: '#'}
     %span Joe Sorce Construction:
     Building Relationships Through Quality For Over 30 years.
   - if admin_signed_in?

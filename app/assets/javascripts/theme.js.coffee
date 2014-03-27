@@ -1,12 +1,4 @@
 $ ->
-  checkOverflow = (element) ->
-    if(element.offsetHeight < element.scrollHeight || element.offsetWidth < element.scrollWidth)
-      if $(element).css('height') != 'auto'
-        $(element).css('height', 'auto')
-        $(element).css('min-width', '250px')
-        $(element).find('li').each ->
-          $(@).css('margin', '10px 10px 10px 10px')
-
   $(".ac_content").livequery ->
     $ac_background = $("#ac_background")
     $ac_loading = $ac_background.find(".ac_loading")
@@ -41,7 +33,6 @@ $ ->
         #
         $ac_loading.show() #show loading status image
         $.when(slideOutMenu()).done ->
-          checkOverflow($('.ac_menu')[0])
           #hide the loading status image
           $ac_loading.hide()
           $.when(toggleMenuItems("up")).done ->
@@ -132,7 +123,6 @@ $ ->
 
         # on window resize set the width for the menu
         $(window).bind "resize.Menu", (e) ->
-          checkOverflow($('.ac_menu')[0])
           # calculate new width for the menu
           new_w = $(window).width() - $title.outerWidth(true)
           $menu.css "width", new_w + "px"
