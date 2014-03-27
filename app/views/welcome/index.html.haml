@@ -36,13 +36,15 @@
               .control-group
                 %label.control-label{for: 'full_name'} Full Name
                 .controls
-                  %input#inputFullName{name: 'full_name', placeholder: 'Full Name', type: 'text'}
+                  %input#inputFullName{name: 'full_name', placeholder: 'Full Name', type: 'text', required: true}
+              .control-group
+                %label.control-label{for: 'email'} Email
+                .controls
+                  %input#inputEmail{name: 'email', placeholder: 'Email', type: 'email', required: true}
               .control-group
                 %label.control-label{for: 'bid_type'} Bid Type
                 .controls
                   %select{name: 'bid_type'}
-                    %option
-                      = '---'
                     %option
                       Service Work
                     %option
@@ -58,7 +60,7 @@
               .control-group
                 %label.control-label{for: 'bid_needs'} Describe Your Needs
                 .controls
-                  %textarea{name: 'bid_needs'}
+                  %textarea{name: 'bid_needs', required: true}
               .control-group
                 .controls
                   %input{type: 'submit', role: 'button', class: 'btn'}
@@ -69,23 +71,27 @@
           #contact_us_content
             %h2 Contact Us / Pay Us
             %hr
-            %h2 We hear you!
             #contact_us
+              %h2 We hear you!
               %form.form-horizontal#bid_form{action: '/contact_us', method: 'POST'}
                 %input{name: 'authenticity_token', type: 'hidden', value: form_authenticity_token}/
                 .control-group
                   %label.control-label{for: 'full_name'} Full Name
                   .controls
-                    %input#inputFullName{name: 'full_name', placeholder: 'Full Name', type: 'text'}
+                    %input#inputFullName{name: 'full_name', placeholder: 'Full Name', type: 'text', required: true}
+                .control-group
+                  %label.control-label{for: 'email'} Email
+                  .controls
+                    %input#inputEmail{name: 'email', placeholder: 'Email', type: 'email', required: true}
                 .control-group
                   %label.control-label{for: 'bid_needs'} What can we do for you?
                   .controls
-                    %textarea{name: 'contact_question'}
+                    %textarea{name: 'contact_question', required: true}
                 .control-group
                   .controls
                     %input{type: 'submit', role: 'button', class: 'btn'}
-            %h2 Need to pay us?
             #pay_us
+              %h2 Need to pay us?
               %form.form-horizontal
                 .control-group
                   %label#pay_us_label.control-label{for: 'payment_amount'} Payment Amount

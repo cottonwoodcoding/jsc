@@ -5,7 +5,7 @@ class AdminController < ApplicationController
   end
 
   def settings
-    @story = Setting.find_by_key('story').value
+    @story = Setting.find_by_key('story').value rescue ''
     @albums_hash = {}
     image_shack_albums.each do |album|
       @albums_hash[album['id']] = album['title']
@@ -13,8 +13,9 @@ class AdminController < ApplicationController
   end
 
   def update_story
-    story = Setting.where('key = "story"').first_or_create
-    story.update_attributes!(value: params['story'])
+    story = Setting.where(key: 'story').first_or_create
+    story.update_attribute(:value, params['story'])
+    story.save!
     flash[:notice] = 'Our Story Updated!'
     render js: 'window.location.reload();'
   end
@@ -40,12 +41,12 @@ class AdminController < ApplicationController
 
   def image_shack_auth
     result = image_shack_api_call('https://api.imageshack.us/v1/user/login', :post,
-                                  {user: CONFIG['image_shack']['username'], password: CONFIG['image_shack']['password']})
+                                  {user: CONFIG['image-shack-username'], password: CONFIG['image-shack-password']})
     result['auth_token'] unless result.nil?
   end
 
   def image_shack_albums
-    result = image_shack_api_call("https://api.imageshack.us/v1/user/#{CONFIG['image_shack']['username']}/albums")
+    result = image_shack_api_call("https://api.imageshack.us/v1/user/#{CONFIG['image-shack-username']}/albums")
     result['albums'] unless result.nil?
   end
 

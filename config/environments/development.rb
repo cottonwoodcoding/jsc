@@ -28,4 +28,13 @@ JoeSorceConstruction::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = {host: 'localhost:10177'}
+  #Paypal
+  config.after_initialize do
+    paypal_options = {
+        login: CONFIG['paypal-username'],
+        password: CONFIG['paypal-password'],
+        signature: CONFIG['paypal-signature']
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

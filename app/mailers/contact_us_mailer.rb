@@ -1,9 +1,8 @@
 class ContactUsMailer < ActionMailer::Base
-  include SendGrid
-
-
   def contact_message(contact_hash)
-    sendgrid_recipients CONFIG['sendgrid']['emails']
-    mail :subject => "#{contact_hash[:name]} has a question about JSorce Construction."
+    mail from: contact_hash['email'],
+         to: EMAILS,
+         :subject => "#{contact_hash['full_name']} has a question about JSorce Construction.",
+         body: contact_hash['contact_question']
   end
 end

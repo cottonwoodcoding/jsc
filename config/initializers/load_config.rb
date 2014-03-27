@@ -1,3 +1,5 @@
+EMAILS = %w(jakesorce@gmail.com joesorce@comcast.net)
+
 if Rails.env.development?
   CONFIG = YAML.load_file('config/configs.yml') rescue {}
 elsif Rails.env.production?

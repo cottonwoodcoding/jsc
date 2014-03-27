@@ -77,4 +77,15 @@ JoeSorceConstruction::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.assets.compile = true
+  #Paypal
+  config.after_initialize do
+    paypal_options = {
+        login: CONFIG['paypal-username'],
+        password: CONFIG['paypal-password'],
+        signature: CONFIG['paypal-signature']
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

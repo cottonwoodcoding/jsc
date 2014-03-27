@@ -1,16 +1,10 @@
-image_shack:
-  username: username
-  password: password
+image-shack-username: username
+image-shack-password: password
 
-paypal:
-  login: api login
-  password: api password
-  signature: api signature
+paypal-username: api username
+paypal-password: api password
+paypal-signature: api signature
 
-sendgrid:
-  username: username
-  password: password
-  domain: domain
-  emails:
-    - test@test.com
-    - test2@test.com
+sendgrid-username: username
+sendgrid-password: password
+sendgrid-domain: domain
