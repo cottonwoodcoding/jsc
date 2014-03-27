@@ -1,0 +1,23 @@
+#settings-wrapper
+  #admin-header.header-text
+    Admin Settings
+    %span.pull-right
+      = link_to 'Logout', destroy_admin_session_path, :method => :delete, :class => 'delete'
+  %hr
+  #our_story_settings.container
+    #our_work_header.header-text.header-text
+      Update Our Story:
+    #update_story_content
+      %textarea
+        = @story
+      .pull-right
+        %button.btn#update_story
+          Update Story
+  #our_work_settings.container
+    #our_work_header.header-text
+      Update Our Work:
+    - @albums_hash.each do |album_id, album_title|
+      .sub-header-text.pointer.album_title{value: album_id}
+        = "Album: #{album_title}"
+        %i{class:'icon-arrow-right'}
+      .album_holder

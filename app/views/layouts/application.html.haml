@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %title JSC - Joe Sorce Construction
+    %meta{:content => 'Joe Sorce Construction', :name => 'description'}
+    %meta{:content => 'construction, remodel, new construction, handyman, service work, contractor', :name => 'keywords'}
+    %meta{:content => 'width=device-width, initial-scale=1.0', :name => 'viewport'}
+    %link{:href => image_path('favicon.ico'), :rel => 'shortcut icon', :type => 'image/x-icon'}
+    %link{:href => 'http://fonts.googleapis.com/css?family=PT+Sans+Narrow:regular,bold', :rel => 'stylesheet', :type => 'text/css'}/
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    = render partial: 'shared/bflash'
+    = yield

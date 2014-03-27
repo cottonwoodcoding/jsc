@@ -1,0 +1,105 @@
+#ac_background.ac_background
+  .ac_loading
+#ac_content.ac_content
+  %h1
+    %span> JSorce
+    Construction
+  .ac_menu
+    %ul
+      %li
+        %a{href: '#'} What we do
+        .ac_subitem
+          %span.ac_close
+          %h2 Our Story
+          %hr
+          #our_story.center-text
+            %p
+              = @story
+          %hr
+      %li
+        %a{href: '#', class: 'see_our_work'} See Our Work
+        .ac_subitem.our_work
+          %span.ac_close
+          %h2 Photo Gallery
+          %hr
+          #our_work
+            #albums
+      %li
+        %a{href: '#'} Get a Bid
+        .ac_subitem
+          %span.ac_close
+          %h2 Bid Form
+          %hr
+          #bid_content
+            %form.form-horizontal#bid_form{action: '/bid_upload', method: 'POST', enctype: 'multipart/form-data'}
+              %input{name: 'authenticity_token', type: 'hidden', value: form_authenticity_token}/
+              .control-group
+                %label.control-label{for: 'full_name'} Full Name
+                .controls
+                  %input#inputFullName{name: 'full_name', placeholder: 'Full Name', type: 'text'}
+              .control-group
+                %label.control-label{for: 'bid_type'} Bid Type
+                .controls
+                  %select{name: 'bid_type'}
+                    %option
+                      = '---'
+                    %option
+                      Service Work
+                    %option
+                      Remodel
+                    %option
+                      New Construction
+                    %option
+                      Other
+              .control-group
+                %label.control-label{for: 'bid_picture'} Upload a Picture
+                .controls
+                  %input{name: 'bid_file', type: 'file'}
+              .control-group
+                %label.control-label{for: 'bid_needs'} Describe Your Needs
+                .controls
+                  %textarea{name: 'bid_needs'}
+              .control-group
+                .controls
+                  %input{type: 'submit', role: 'button', class: 'btn'}
+      %li
+        %a{href: '#'} Contact / Payments
+        .ac_subitem
+          %span.ac_close
+          #contact_us_content
+            %h2 Contact Us / Pay Us
+            %hr
+            %h2 We hear you!
+            #contact_us
+              %form.form-horizontal#bid_form{action: '/contact_us', method: 'POST'}
+                %input{name: 'authenticity_token', type: 'hidden', value: form_authenticity_token}/
+                .control-group
+                  %label.control-label{for: 'full_name'} Full Name
+                  .controls
+                    %input#inputFullName{name: 'full_name', placeholder: 'Full Name', type: 'text'}
+                .control-group
+                  %label.control-label{for: 'bid_needs'} What can we do for you?
+                  .controls
+                    %textarea{name: 'contact_question'}
+                .control-group
+                  .controls
+                    %input{type: 'submit', role: 'button', class: 'btn'}
+            %h2 Need to pay us?
+            #pay_us
+              %form.form-horizontal
+                .control-group
+                  %label#pay_us_label.control-label{for: 'payment_amount'} Payment Amount
+                  .controls
+                    %input{name: 'payment_amount', type: 'text', id: 'payment_amount'}
+                    %input#pay_us_button{type: 'image', src: image_path('paypal-button.png')}
+.ac_footer
+  %a.ac_left{href: '#'}
+    %span Joe Sorce Construction:
+    Building Relationships Through Quality For Over 30 years.
+  - if admin_signed_in?
+    = link_to 'Logout', destroy_admin_session_path, :method => :delete, :class => 'delete'
+    %a.ac_right{href: '/admin/settings'}
+      %span Admin Settings
+  - else
+    %a.ac_right{href: admin_session_path}
+      %span Admin Login
