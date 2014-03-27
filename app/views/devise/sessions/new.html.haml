@@ -12,4 +12,5 @@
           = f.password_field :password
       .control-group
         .controls
-          %button.btn{type: 'submit'} Sign in
+          = link_to 'Go Back', index_path, class: 'btn go_back', remote: true
+          %button.btn.btn-warning Sign in
