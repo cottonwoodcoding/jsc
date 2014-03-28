@@ -6,18 +6,17 @@ $ ->
       if $paymentAmount.val() == ''
         alert('Payment amount cannot be empty.')
       else
-        $contactUs = $('#contact_us_content').parent()
-        $contactUs.mask('Directing you to PayPal please wait...')
+        loginWindow = window.open('', 'payment');
         $.ajax
           type: 'POST'
           url: '/payment'
           data: {'payment_amount': $('#payment_amount').val()}
           success: (data) ->
             $paymentAmount.val()
-            window.location.href = data
+            loginWindow.location.href = data
+            $paymentAmount.val() == ''
           error: ->
             alert('There was an error directing you to PayPal please try again.')
-            $contactUs.unmask()
 
   $('.album_title').livequery ->
     $(@).click ->
@@ -40,7 +39,7 @@ $ ->
               if index == 0
                 $albumHolder.find('.carousel-inner').append("<div class='item active'><img class='carousel-image' src='#{image_src}'><div class='carousel-caption'>#{albumTitleText}</div></div>")
               else
-                $albumHolder.find('.carousel-inner').append("<div class='item'><img src='#{image_src}'><div class='carousel-caption'>#{albumTitleText}</div></div>")
+                $albumHolder.find('.carousel-inner').append("<div class='item'><img class='carousel-image' src='#{image_src}'><div class='carousel-caption'>#{albumTitleText}</div></div>")
 
             $albumHolder.find('.carousel').append("<span class='carousel-control left pointer' href='##{albumId}' data-slide='prev'>&lsaquo;</span>")
             $albumHolder.find('.carousel').append("<span class='carousel-control right pointer' href='##{albumId}' data-slide='next'>&rsaquo;</span>")
