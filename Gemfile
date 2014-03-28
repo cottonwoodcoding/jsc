@@ -33,6 +33,7 @@ gem 'curb'
 gem 'sendgrid'
 gem 'rails_12factor'
 gem 'pg'
+ruby '2.0.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
