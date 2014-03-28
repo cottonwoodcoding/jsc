@@ -88,6 +88,11 @@ JoeSorceConstruction::Application.configure do
     }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
+
   config.static_cache_control = 'public, max-age=3600'
   config.static_cache_control = 'assets, max-age=3600'
+
+  config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOWALL'
+  }
 end
