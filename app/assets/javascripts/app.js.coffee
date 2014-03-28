@@ -6,14 +6,13 @@ $ ->
       if $paymentAmount.val() == ''
         alert('Payment amount cannot be empty.')
       else
-        loginWindow = window.open('', 'payment');
         $.ajax
           type: 'POST'
           url: '/payment'
           data: {'payment_amount': $('#payment_amount').val()}
           success: (data) ->
             $paymentAmount.val('')
-            loginWindow.location.href = data
+            location.href = data
           error: ->
             alert('There was an error directing you to PayPal please try again.')
 
@@ -77,5 +76,9 @@ $ ->
 
   $('.facebook-icon').livequery ->
     $(@).click ->
-      facebookWindow = window.open('', 'facebook')
-      facebookWindow.location.href = $(@).parent().attr('value')
+      a = document.createElement("a")
+      a.setAttribute "href", $(@).parent().attr('value')
+      a.setAttribute "target", "_blank"
+      dispatch = document.createEvent("HTMLEvents")
+      dispatch.initEvent "click", true, true
+      a.dispatchEvent dispatch
