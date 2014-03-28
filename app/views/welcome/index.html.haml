@@ -69,7 +69,10 @@
         .ac_subitem
           %span.ac_close
           #contact_us_content
-            %h2 Contact / Pay Us
+            %h2
+              Contact / Pay Us
+              %span.pointer{value: 'https://www.facebook.com/pages/JSorce-Construction/202138332894'}
+                %img.facebook-icon{src: image_path('facebook-icon.png')}
             %hr
             #contact_us
               %h2 We hear you!
@@ -104,7 +107,8 @@
     Building Relationships Through Quality For Over 30 years.
   - if admin_signed_in?
     = link_to 'Logout', destroy_admin_session_path, :method => :delete, :class => 'delete'
-    %a.ac_right{href: '/admin/settings'}
+    .ac_right
+    %a{href: '/admin/settings'}
       %span Admin Settings
   - else
     %a.ac_right{href: admin_session_path}

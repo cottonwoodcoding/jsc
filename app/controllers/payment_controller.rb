@@ -8,6 +8,11 @@ class PaymentController < ActionController::Base
                                                     :cancel_return_url => url_for(controller: :welcome, action: :index, only_path: false),
                                                     :no_shipping => true)
     session['payment_amount'] = payment_amount
+    Rails.logger.info payment_amount
+    Rails.logger.info setup_response
+    Rails.logger.info setup_response.inspect
+    Rails.logger.info setup_response.token
+    Rails.logger.info EXPRESS_GATEWAY
     render text: EXPRESS_GATEWAY.redirect_url_for(setup_response.token, review: false)
   end
 

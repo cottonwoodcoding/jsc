@@ -86,6 +86,8 @@ JoeSorceConstruction::Application.configure do
         password: CONFIG['paypal-password'],
         signature: CONFIG['paypal-signature']
     }
+    Rails.logger.info CONFIG
+    Rails.logger.info paypal_options
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
 

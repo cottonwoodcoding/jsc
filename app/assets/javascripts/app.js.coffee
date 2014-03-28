@@ -12,9 +12,8 @@ $ ->
           url: '/payment'
           data: {'payment_amount': $('#payment_amount').val()}
           success: (data) ->
-            $paymentAmount.val()
+            $paymentAmount.val('')
             loginWindow.location.href = data
-            $paymentAmount.val() == ''
           error: ->
             alert('There was an error directing you to PayPal please try again.')
 
@@ -75,3 +74,8 @@ $ ->
         error: ->
           $ourWork.unmask()
           alert('Error getting albums please press escape and try again.')
+
+  $('.facebook-icon').livequery ->
+    $(@).click ->
+      facebookWindow = window.open('', 'facebook')
+      facebookWindow.location.href = $(@).parent().attr('value')
