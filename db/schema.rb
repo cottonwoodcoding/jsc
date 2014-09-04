@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222203109) do
+ActiveRecord::Schema.define(version: 20140904163343) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140222203109) do
 
   create_table "settings", force: true do |t|
     t.string "key"
-    t.string "value"
+    t.text   "value", limit: 255
   end
 
 end
