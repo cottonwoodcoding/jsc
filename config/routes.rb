@@ -12,4 +12,5 @@ JoeSorceConstruction::Application.routes.draw do
   post '/bid_upload' => 'welcome#bid_upload'
   post '/update_story' => 'admin#update_story'
   post '/contact_us' => 'welcome#contact_us'
+  post '/credit_card_payment' => 'payment#credit_card_payment'
 end

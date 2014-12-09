@@ -22,5 +22,6 @@ module JoeSorceConstruction
     config.action_dispatch.default_headers = {
         'X-Frame-Options' => 'ALLOWALL'
     }
+    config.filter_parameters += [:password, :password_confirmation, :card_number, :code, :expire_month, :expire_year]
   end
 end

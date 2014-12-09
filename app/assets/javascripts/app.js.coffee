@@ -82,3 +82,11 @@ $ ->
       dispatch = document.createEvent("HTMLEvents")
       dispatch.initEvent "click", true, true
       a.dispatchEvent dispatch
+
+  $('#paypal_radio').on 'click', ->
+    $('#paypal_form').show()
+    $('#credit_card_form').hide()
+
+  $('#credit_card_radio').on 'click', ->
+    $('#credit_card_form').show()
+    $('#paypal_form').hide()

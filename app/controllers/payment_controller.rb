@@ -1,4 +1,5 @@
 class PaymentController < ActionController::Base
+
   def express_payment
     payment_amount = (params[:payment_amount].to_i * 100)
     setup_response = EXPRESS_GATEWAY.setup_purchase(payment_amount,
@@ -15,5 +16,4 @@ class PaymentController < ActionController::Base
     Rails.logger.info EXPRESS_GATEWAY
     render text: EXPRESS_GATEWAY.redirect_url_for(setup_response.token, review: false)
   end
-
 end

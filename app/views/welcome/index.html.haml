@@ -95,14 +95,17 @@
                 .control-group
                   .controls
                     %input{type: 'submit', role: 'button', class: 'btn', value: 'Submit'}
+            %hr
             #pay_us
               %h2 Need to pay us?
-              %form.form-horizontal
-                .control-group
-                  %label#pay_us_label.control-label{for: 'payment_amount'} Payment Amount
-                  .controls
-                    %input{name: 'payment_amount', type: 'text', id: 'payment_amount'}
-                    %input#pay_us_button{type: 'image', src: image_path('paypal-button.png')}
+              #paypal_form
+                %h2 Pay With PayPal
+                %form.form-horizontal
+                  .control-group
+                    %label#pay_us_label.control-label{for: 'payment_amount'} Payment Amount
+                    .controls
+                      %input{name: 'payment_amount', type: 'text', id: 'payment_amount'}
+                      %input#pay_us_button{type: 'image', src: image_path('paypal-button.png')}
 .ac_footer
   %a.ac_left.hidden-phone{href: '#'}
     %span Joe Sorce Construction:
