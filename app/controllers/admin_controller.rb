@@ -22,7 +22,7 @@ class AdminController < ApplicationController
 
   def album_images
     images = []
-    result = image_shack_api_call("https://api.imageshack.us/v1/albums/#{params[:album_id]}")
+    result = image_shack_api_call("http://api.imageshack.us/v1/albums/#{params[:album_id]}")
     result['images'].each do |image_data|
       images << {image_id: image_data['id'], image_link: image_shack_image_src(image_data['server'], image_data['filename'])}
     end
@@ -40,18 +40,18 @@ class AdminController < ApplicationController
   end
 
   def image_shack_auth
-    result = image_shack_api_call('https://api.imageshack.us/v1/user/login', :post,
+    result = image_shack_api_call('http://api.imageshack.us/v1/user/login', :post,
                                   {user: CONFIG['image-shack-username'], password: CONFIG['image-shack-password']})
     result['auth_token'] unless result.nil?
   end
 
   def image_shack_albums
-    result = image_shack_api_call("https://api.imageshack.us/v1/user/#{CONFIG['image-shack-username']}/albums")
+    result = image_shack_api_call("http://api.imageshack.us/v1/user/#{CONFIG['image-shack-username']}/albums")
     result['albums'] unless result.nil?
   end
 
   def image_shack_image_src(server, filename)
-    result = image_shack_api_call("https://api.imageshack.us/v1/images/#{server}/#{filename}")
+    result = image_shack_api_call("http://api.imageshack.us/v1/images/#{server}/#{filename}")
     result['direct_link'] unless result.nil?
   end
 
