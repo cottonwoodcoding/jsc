@@ -34,7 +34,6 @@ gem 'sendgrid'
 gem 'rails_12factor'
 gem 'pg'
 gem 'carmen-rails', '~> 1.0.0'
-ruby '2.0.0'
 
 gem 'paypal-sdk-rest'
 
@@ -44,7 +43,6 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'debugger'
   gem 'pry'
   gem 'sqlite3'
 end
