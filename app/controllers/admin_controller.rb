@@ -60,8 +60,8 @@ class AdminController < ApplicationController
     c.url = "#{url}?#{Curl::postalize(params)}"
     c.method type
     c.ssl_verify_peer = false
+    c.verbose = true
     c.perform
-    logger.info "NEW CURL RESPONSE: #{c.body}}"
     c.response_code == 200 ? JSON.parse(c.body)['result'] : nil
   end
 end
