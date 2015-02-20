@@ -56,7 +56,11 @@ class AdminController < ApplicationController
   end
 
   def image_shack_api_call(url, type = :get, params={})
-    response = Curl.send(type.to_sym, url, params)
-    response.response_code == 200 ? JSON.parse(response.body)['result'] : nil
+    c = Curl::Easy.new
+    c.url = "#{url}?#{Curl::postalize(params)}"
+    c.method type
+    c.ssl_verify_peer = false
+    c.perform
+    c.response_code == 200 ? JSON.parse(c.body)['result'] : nil
   end
 end
