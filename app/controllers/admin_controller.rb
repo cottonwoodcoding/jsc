@@ -22,9 +22,8 @@ class AdminController < ApplicationController
 
   def album_images
     images = []
-    result = image_shack_api_call("http://api.imageshack.us/v1/albums/#{params[:album_id]}")
-    result['images'].each do |image_data|
-      images << {image_id: image_data['id'], image_link: image_shack_image_src(image_data['server'], image_data['filename'])}
+    image_shack_images.each do |image_data|
+      images << {image_id: image_data['id'], image_link: image_data['direct_link']}
     end
     render json: images.to_json
   end
@@ -39,28 +38,27 @@ class AdminController < ApplicationController
     lambda { |h, k| h[k] = Array.new() }
   end
 
-  def image_shack_auth
-    result = image_shack_api_call('http://api.imageshack.us/v1/user/login', :post,
-                                  {user: CONFIG['image-shack-username'], password: CONFIG['image-shack-password']})
-    result['auth_token'] unless result.nil?
+  def image_shack_images
+    result = image_shack_api_call("http://api.imageshack.com/v2/user/jakesorce/images")
+    result['images'] unless result.nil?
   end
 
   def image_shack_albums
-    result = image_shack_api_call("http://api.imageshack.us/v1/user/#{CONFIG['image-shack-username']}/albums")
+    result = image_shack_api_call("http://api.imageshack.com/v2/user/jakesorce/albums")
     result['albums'] unless result.nil?
   end
 
-  def image_shack_image_src(server, filename)
-    result = image_shack_api_call("http://api.imageshack.us/v1/images/#{server}/#{filename}")
-    result['direct_link'] unless result.nil?
+  def thumbnail(direct_link)
+    parts = direct_link.split(".")
+    length = parts.length
+    parts.insert(length - 1, 'th').join('.')
   end
 
-  def image_shack_api_call(url, type = :get, params={})
+  def image_shack_api_call(url, type = :get, params = {})
     c = Curl::Easy.new
     c.url = "#{url}?#{Curl::postalize(params)}"
     c.method type
     c.ssl_verify_peer = false
-    c.verbose = true
     c.perform
     c.response_code == 200 ? JSON.parse(c.body)['result'] : nil
   end
